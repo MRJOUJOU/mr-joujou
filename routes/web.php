@@ -1,49 +1,40 @@
 <?php
 
+use App\Http\Controllers\admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\admin\ContactController as AdminContactController;
+use App\Http\Controllers\admin\HomeController as AdminHomeController;
+use App\Http\Controllers\client\ArticleController;
+use App\Http\Controllers\client\CategorieController;
+use App\Http\Controllers\client\ContactController;
+use App\Http\Controllers\client\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin', function () {
-    return view("admin.home");
-});
+Route::get('/admin', [AdminHomeController::class, 'acceuil'])->name('');
 
-Route::get('/admin/articles/liste', function () {
-    return view('admin.article.liste');
-});
+Route::get('/admin/articles/liste', [AdminArticleController::class, 'liste']);
 
-Route::get('/admin/articles/ajouter', function () {
-    return view('admin.article.create');
-});
+Route::get('/admin/articles/ajouter', [AdminArticleController::class, 'ajouter']);
 
-Route::get('/admin/articles/details', function () {
-    return view("admin.article.show");
-});
+Route::get('/admin/articles/details',[AdminArticleController::class, 'details'] );
 
-Route::get('/admin/articles/modifier', function () {
-    return view("admin.article.edit");
-});
+Route::get('/admin/articles/modifier', [AdminArticleController::class, 'modifier']);
 
-Route::get('/admin/contact/liste', function () {
-    return view("admin.contact.liste");
-});
+Route::get('/admin/contact/liste', [AdminContactController::class, 'liste']);
 
-Route::get('/admin/contact/details', function () {
-    return view("admin.contact.show");
-});
+Route::get('/admin/contact/details', [AdminContactController::class, 'details']);
 
-Route::get('/', function () {
-    return view("client.home");
-});
+Route::get('/', [HomeController::class, 'acceuil']) ->name('client.acceuil');
 
-Route::get('/articles', function () {
-    return view("client.article");
-});
+Route::get('/articles', [ArticleController::class, 'liste'])->name('client.article');
 
-Route::get('/articles/{slug}', function () {
-    return view("client.article-show");
-});
+Route::get('/articles/{slug}', [ArticleController::class, 'details'])->name('client.article.details');
 
-Route::get('/contact', function () {
-    return view("client.contact");
-});
+Route::get('/contact', [ContactController::class, 'contact'])->name('client.contact');
+
+Route::post('/contact/taitement', [ContactController::class, 'contact_traitement'])->name('client.contact.traitement');
+
+Route::get('/categorie', [CategorieController::class, 'liste'])->name('client.categorie');
+
+Route::get('/categorie/{slug}', [CategorieController::class, 'details'])->name('client.categorie.details');
 
 

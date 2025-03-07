@@ -10,7 +10,7 @@
         </div>
     @endif
 
-    <form action="{{ url('/contact') }}" method="POST">
+    <form action="{{ route('client.contact.traitement') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Nom :</label>
