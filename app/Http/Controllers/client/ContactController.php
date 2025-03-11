@@ -16,6 +16,14 @@ class ContactController extends Controller
     public function contact_traitement(Request $request)
     {
         //dd($request->all());
+
+        $request->validate([
+            'name' => ['required', 'string', 'min:2'],
+            'email' => ['required', 'email', 'unique:contacts'],
+            'message' => ['required', 'string', 'max:1024'],
+
+        ]);
+
         Contact::create([
             'nom' => $request->name,
             'email' => $request->email,

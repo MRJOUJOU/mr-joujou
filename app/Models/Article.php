@@ -16,7 +16,7 @@ class Article extends Model
         'slug'
     ];
 
-    public function categories(){
+    public function categorie(){
 
         return $this->belongsTo(Categorie::class, 'categorie_id');
     }

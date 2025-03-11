@@ -9,19 +9,21 @@ use App\Http\Controllers\client\ContactController;
 use App\Http\Controllers\client\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin', [AdminHomeController::class, 'acceuil'])->name('');
+Route::get('/admin/acceuil', [AdminHomeController::class, 'acceuil'])->name('admin.acceuil');
 
-Route::get('/admin/articles/liste', [AdminArticleController::class, 'liste']);
+Route::get('/admin/articles/liste', [AdminArticleController::class, 'liste'])->name('admin.article');
 
-Route::get('/admin/articles/ajouter', [AdminArticleController::class, 'ajouter']);
+Route::get('/admin/articles/ajouter', [AdminArticleController::class, 'ajouter'])->name('admin.article.ajouter');
 
-Route::get('/admin/articles/details',[AdminArticleController::class, 'details'] );
+Route::post('/ajouter/taitement', [AdminArticleController::class, 'ajouter_traitement'])->name('admin.article.ajouter_traitement');
 
-Route::get('/admin/articles/modifier', [AdminArticleController::class, 'modifier']);
+Route::get('/admin/articles/details',[AdminArticleController::class, 'details'] )->name('admin.article.details');
 
-Route::get('/admin/contact/liste', [AdminContactController::class, 'liste']);
+Route::get('/admin/articles/modifier', [AdminArticleController::class, 'modifier'])->name('admin.article.modifier');
 
-Route::get('/admin/contact/details', [AdminContactController::class, 'details']);
+Route::get('/admin/contact/liste', [AdminContactController::class, 'liste'])->name('admin.contact');
+
+Route::get('/admin/contact/details', [AdminContactController::class, 'details'])->name('admin.contact.details');
 
 Route::get('/', [HomeController::class, 'acceuil']) ->name('client.acceuil');
 
